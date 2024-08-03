@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Example</title>
+    <link rel="icon" type="image/png" href="iconmonstr-bicycle-3-24.png">
+     <link rel="stylesheet" href="style.css">
+       
+    
+    
+</head>
+<body>
+    <!-- HTML-->
+    <h1>QUESTIONS</h1>
+    <!-- Q1-->
+    <div class="question-container">
+        <h2>1. How will you be riding?</h2>
+        <div class="dropdown-container">
+            <a href="#" class="dropdown-toggle">Select</a>
+            <ul class="dropdown" id="dropdown1">
+                <li><a href="#" data-value="Fast">Fast</a></li>
+                <li><a href="#" data-value="Off Road">Off Road</a></li>
+                <li><a href="#" data-value="Cruising">Cruising</a></li>
+                <li><a href="#" data-value="Long Distance">Long Distance</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Q2-->
+    <div class="question-container">
+        <h2>2. How Often Will you be Riding?</h2>
+        <div class="dropdown-container">
+            <a href="#" class="dropdown-toggle">Select</a>
+            <ul class="dropdown" id="dropdown2">
+                <li><a href="#" data-value="Every Day">Every Day</a></li>
+                <li><a href="#" data-value="On the Weekends for fun">On the Weekends for fun</a></li>
+                <li><a href="#" data-value="Once in a while">Once in a while</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Q3-->
+    <div class="question-container">
+        <h2>3. What Style of Bike do you Like?</h2>
+        <div class="dropdown-container">
+            <a href="#" class="dropdown-toggle">Select</a>
+            <ul class="dropdown" id="dropdown3">
+                <li><a href="#" data-value="Sport">Sport</a></li>
+                <li><a href="#" data-value="Open">Open</a></li>
+                <li><a href="#" data-value="Cruiser">Cruiser</a></li>
+                <li><a href="#" data-value="Adventure">Adventure</a></li>
+                <li><a href="#" data-value="Standard">Standard</a></li>
+                <li><a href="#" data-value="Scooters">Scooters</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <a class="home_button" href="index.html">Home</a>
+    <a class="sub" href="#">Submit</a>
+   
+    
+    <!-- Java -->
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dropdowns = document.querySelectorAll(".dropdown");
+
+            dropdowns.forEach((dropdown, index) => {
+                const savedOption = localStorage.getItem(`dropdown${index + 1}`);
+                if (savedOption) {
+                    const toggle = dropdown.previousElementSibling;
+                    toggle.textContent = savedOption;
+                }
+
+                dropdown.addEventListener("click", (event) => {
+                    if (event.target.tagName === 'A') {
+                        const selectedValue = event.target.getAttribute("data-value");
+                        const toggle = dropdown.previousElementSibling;
+                        toggle.textContent = selectedValue;
+                        localStorage.setItem(`dropdown${index + 1}`, selectedValue);
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
